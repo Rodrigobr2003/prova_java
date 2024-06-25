@@ -1,4 +1,4 @@
-package com.fatec.city;
+ package com.fatec.city;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
