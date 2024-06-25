@@ -11,6 +11,8 @@ import com.fatec.city.entities.City;
 import com.fatec.city.mapping.CityMapper;
 import com.fatec.city.repositories.CityRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class CityServices {
     
@@ -22,4 +24,12 @@ public class CityServices {
 
         return city.stream().map(s -> CityMapper.toDTO(s)).collect(Collectors.toList());
     }
+
+    public CityResponse getCityById(int id){
+        City city =  cityRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cidade não cadastrada"));
+
+        return CityMapper.toDTO(city);
+    }
+
+    
 }
