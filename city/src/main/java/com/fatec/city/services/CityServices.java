@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatec.city.dto.CityRequest;
 import com.fatec.city.dto.CityResponse;
 import com.fatec.city.entities.City;
 import com.fatec.city.mapping.CityMapper;
@@ -31,5 +32,17 @@ public class CityServices {
         return CityMapper.toDTO(city);
     }
 
-    
+    public void update(int id, CityRequest request){
+        try {
+            City aux = cityRepository.getReferenceById(id);
+            aux.setNome(request.nome());
+            aux.setEstado(request.estado());
+            aux.setPopulacao(request.populacao());
+            aux.setPib(request.pib());
+
+            this.cityRepository.save(aux);
+        } catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Cidade não cadastrada");
+        }
+    }
 }
