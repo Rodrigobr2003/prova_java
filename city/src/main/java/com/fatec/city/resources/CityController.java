@@ -40,7 +40,7 @@ public class CityController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public void deletCityById(@PathVariable int id){
         this.cityServices.deletCityById(id);
     }
